@@ -31,9 +31,9 @@
 // }
 
 
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class UserHome extends StatelessWidget {
   const UserHome({Key? key});
@@ -57,22 +57,24 @@ class UserHome extends StatelessWidget {
     );
   }
 
-  Future<List<Map<String, dynamic>>> _fetchData() async {
-    final jsonString = await rootBundle.loadString('assets/List_Tactics.json');
-    final jsonData = json.decode(jsonString);
-    final data = List<Map<String, dynamic>>.from(jsonData);
-    return data;
+  Future<Map<String, dynamic>> _fetchData() async {
+    final response = await http.get(Uri.parse('https://raw.githubusercontent.com/MISP/misp-galaxy/main/clusters/mitre-ics-tactics.json'));
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to fetch data');
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _homeAppBar('Mitre'),
-      body: FutureBuilder<List<Map<String, dynamic>>>(
+      body: FutureBuilder<Map<String, dynamic>>(
         future: _fetchData(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            final data = snapshot.data!;
+            final data = List<Map<String, dynamic>>.from(snapshot.data!['values']);
             return GridView.builder(
               padding: const EdgeInsets.all(8),
               itemCount: data.length,
@@ -83,8 +85,8 @@ class UserHome extends StatelessWidget {
                 mainAxisSpacing: 8,
               ),
               itemBuilder: (context, index) {
-                // Reduz a descrição até o primeiro ponto final
-                final description = data[index]['description'].toString().split('.')[0];
+                // Reduz a descrição até o segundo ponto final
+                final description = data[index]['description'].toString().split('.').take(2).join('.');
 
                 return Container(
                   decoration: BoxDecoration(
