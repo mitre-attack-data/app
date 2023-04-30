@@ -1,0 +1,9 @@
+{
+    "app_name": "Mitre",
+    "username": "Nome",
+    "password": "Senha",
+    "sign_in": "Entrar",
+    "sign_up": "Cadastrar",
+    "without_account": "Não tem uma conta?",
+    "forgot_password": "Esqueceu a senha?"
+}
