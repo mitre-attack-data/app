@@ -11,6 +11,8 @@ class LoginPageModule extends Module {
 }
 
 class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,7 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
+              const Text(
                 'Faça login',
                 style: TextStyle(
                   fontSize: 24.0,
@@ -29,38 +31,38 @@ class LoginPage extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'E-mail',
                   hintStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                 ),
-                style: TextStyle(color: Color.fromARGB(255, 3, 3, 3)),
+                style: const TextStyle(color: Color.fromARGB(255, 3, 3, 3)),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               TextFormField(
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Senha',
                   hintStyle: TextStyle(color: Color.fromARGB(255, 8, 8, 8)),
                 ),
-                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               Divider(),
               ButtonTheme(
                 height: 60.0,
                 child: ElevatedButton(
                   onPressed: () => {},
-                  child: Text(
+                  child: const Text(
                     "Entrar",
                     style: TextStyle(
                       color: Color.fromARGB(255, 2, 2, 2),
                     ),
                   ),
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Color.fromARGB(202, 238, 88, 2)),
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        Color.fromARGB(202, 238, 88, 2)),
                   ),
                 ),
               ),
