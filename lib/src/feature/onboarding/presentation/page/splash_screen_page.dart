@@ -8,7 +8,9 @@ class SplashScreenPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Body(),
+      backgroundColor: Color.fromARGB(201, 255, 255, 255),
+      body: Body(), 
+      
     );
   }
 }

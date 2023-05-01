@@ -35,21 +35,34 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+// class UserHome extends StatelessWidget {
+//   const UserHome({Key? key});
+
+//   PreferredSizeWidget _homeAppBar(String text) {
+//     return AppBar(
+//       title: Text(
+//         text,
+//         style: const TextStyle(
+//           color: Color.fromARGB(255, 0, 0, 0),
+//           fontFamily: 'Billabong',
+//           fontSize: 32,
+//           fontWeight: FontWeight.w400,
+//         ),
+//       ),
+//       backgroundColor: Color.fromARGB(202, 238, 88, 2),
+
 class UserHome extends StatelessWidget {
-  const UserHome({Key? key});
+  const UserHome({super.key});
 
   PreferredSizeWidget _homeAppBar(String text) {
     return AppBar(
-      title: Text(
-        text,
-        style: const TextStyle(
-          color: Color.fromARGB(255, 0, 0, 0),
-          fontFamily: 'Billabong',
-          fontSize: 32,
-          fontWeight: FontWeight.w400,
-        ),
-      ),
-      backgroundColor: Color.fromARGB(202, 238, 88, 2),
+      title: Text(text,
+          style: const TextStyle(
+              color: Colors.black,
+              fontFamily: 'Billabong',
+              fontSize: 32,
+              fontWeight: FontWeight.w400)),
+      backgroundColor: Colors.white,
       actions: const [
         Icon(Icons.share, color: Colors.black),
         SizedBox(width: 16),
@@ -91,10 +104,10 @@ class UserHome extends StatelessWidget {
                 return Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
-                    color: Color.fromARGB(255, 255, 255, 255),
+                    color: const Color.fromARGB(255, 255, 255, 255),
                     boxShadow: [
                       BoxShadow(
-                        color: Color.fromARGB(255, 236, 97, 3).withOpacity(0.3),
+                        color: const Color.fromARGB(255, 236, 97, 3).withOpacity(0.3),
                         spreadRadius: 1,
                         blurRadius: 3,
                         offset: const Offset(0, 3),
