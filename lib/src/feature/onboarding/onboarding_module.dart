@@ -10,4 +10,7 @@ class OnboardingModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute('/', child: (_, __) => const SplashScreenPage(), children: []),
       ];
+
+
+      
 }

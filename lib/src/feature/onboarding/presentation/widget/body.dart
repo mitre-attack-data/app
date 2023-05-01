@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mitre_app/src/feature/onboarding/presentation/widget/splash_content.dart';
+import 'package:mitre_app/src/main.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
-
+  
   @override
   _BodyState createState() => _BodyState();
 }
@@ -12,17 +13,17 @@ class _BodyState extends State<Body> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
-      "tile": "Simples...",
-      "text": "A simplicidade acaba de chegar em suas mãos!",
+      "tile": "Mitre",
+      "text": "Uma base de conhecimento acessível globalmente...",
     },
     {
-      "tile": "Fácil...",
+      "tile": "Segurança",
       "text":
-          "Agora sem desculpas para treinar! Você treina no conforto da sua casa.",
+          "...de técnicas de ataque e defesa sobre segurança cibernética.",
     },
     {
-      "tile": "Rápido...",
-      "text": "Com o melhor treinador para te dar o melhor suporte!",
+      "tile": "Aberto para todos!",
+      "text": "Juntando a comunidade para desenvolver uma cibersegurança melhor!",
     },
   ];
   @override
@@ -64,7 +65,7 @@ class _BodyState extends State<Body> {
                     TextButton(
                       child: const Text("Continue"),
                       onPressed: () {
-                        Navigator.of(context).pushReplacementNamed('/home/');
+                        Navigator.of(context).pushReplacementNamed('/home/');//trocar pra tela de login depois
                       },
                     ),
                     const Spacer(),

@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mitre_app/src/feature/home/view/page/homepage.dart';
+import 'package:mitre_app/themes.dart';
 
 import 'app_module.dart';
 import 'app_widget.dart';
 
+ThemeData themeToUse = theme1;
 
 void main() {
   runApp(
     ModularApp(module: AppModule(), child: const AppWidget()),
   );
 }
+
+
+
+
