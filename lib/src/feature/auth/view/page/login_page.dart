@@ -72,7 +72,12 @@ class _LoginPageState extends State<LoginPage> {
                 ElevatedButton(
                     onPressed: () async =>
                         {Navigator.pushNamed(context, 'sign-up')},
-                    child: Text('sign_up'.i18n()))
+                    child: Text('sign_up'.i18n())),
+                const SizedBox(height: 36),
+                ElevatedButton(
+                    onPressed: () async =>
+                        {Navigator.pushNamed(context, 'forgot-password')},
+                    child: Text('forgot_password'.i18n()))
               ],
             ),
           ),
