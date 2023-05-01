@@ -51,8 +51,7 @@ class _BodyState extends State<Body> {
             Expanded(
               flex: 2,
               child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: <Widget>[
                     Row(
@@ -64,7 +63,7 @@ class _BodyState extends State<Body> {
                     TextButton(
                       child: const Text("Continue"),
                       onPressed: () {
-                        Navigator.of(context).pushReplacementNamed('/login/');
+                        Navigator.of(context).pushReplacementNamed('/auth/');
                       },
                     ),
                     const Spacer(),
