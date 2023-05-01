@@ -64,7 +64,7 @@ class _BodyState extends State<Body> {
                     TextButton(
                       child: const Text("Continue"),
                       onPressed: () {
-                        Navigator.of(context).pushReplacementNamed('/home/');
+                        Navigator.of(context).pushReplacementNamed('/login/');
                       },
                     ),
                     const Spacer(),
