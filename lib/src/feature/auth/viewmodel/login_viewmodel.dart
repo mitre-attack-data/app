@@ -5,12 +5,6 @@ import 'package:mitre_app/src/feature/auth/repository/model/user.dart';
 import 'package:mitre_app/src/feature/auth/usecase/login_usecase.dart';
 
 class LoginViewModel {
-  // GlobalKey<FormState> formKey;
-  // TextEditingController emailController;
-  // TextEditingController passwordController;
-
-  // LoginViewModel(this.formKey, this.emailController, this.passwordController);
-
   var isLogged = false;
   final loginUseCase = Modular.get<LoginUseCase>();
   final loginRepository = Modular.get<LoginRepository>();
@@ -22,8 +16,8 @@ class LoginViewModel {
     return null;
   }
 
-  String? passwordValidator(String? email) {
-    if (email == null || email.isEmpty) {
+  String? passwordValidator(String? password) {
+    if (password == null || password.isEmpty) {
       return 'Password is required';
     }
     return null;

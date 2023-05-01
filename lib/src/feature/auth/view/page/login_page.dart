@@ -11,10 +11,22 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool obscureText = true;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final viewModel = Modular.get<LoginViewModel>();
+  final _viewModel = Modular.get<LoginViewModel>();
+
+  hiddenButton() {
+    return IconButton(
+        onPressed: () {
+          setState(() {
+            obscureText = !obscureText;
+          });
+        },
+        icon:
+            Icon(obscureText ? Icons.visibility_off : Icons.visibility_sharp));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,27 +44,35 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                     labelText: 'email'.i18n(),
                     hintText: 'example@email.com'.i18n(),
+                    icon: const Icon(Icons.email_outlined, color: Colors.black),
                   ),
-                  validator: (email) => viewModel.emailValidator(email),
+                  validator: (email) => _viewModel.emailValidator(email),
                 ),
                 TextFormField(
                   controller: _passwordController,
+                  obscureText: obscureText,
                   decoration: InputDecoration(
                     labelText: 'password'.i18n(),
                     hintText: 'password'.i18n(),
+                    icon: hiddenButton(),
                   ),
                   validator: (password) =>
-                      viewModel.passwordValidator(password),
+                      _viewModel.passwordValidator(password),
                 ),
                 const SizedBox(height: 12),
                 ElevatedButton(
                     onPressed: () async => {
-                          await viewModel.login(
+                          await _viewModel.login(
                               _formKey, _emailController, _passwordController),
-                          if (viewModel.isLogged)
-                            {Navigator.pushNamed(context, '/home/')}
+                          if (_viewModel.isLogged)
+                            {Navigator.pushNamed(context, '/home')}
                         },
-                    child: Text('login'.i18n()))
+                    child: Text('login'.i18n())),
+                const SizedBox(height: 36),
+                ElevatedButton(
+                    onPressed: () async =>
+                        {Navigator.pushNamed(context, 'sign-up')},
+                    child: Text('sign_up'.i18n()))
               ],
             ),
           ),
