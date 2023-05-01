@@ -84,7 +84,7 @@ class _BodyState extends State<Body> {
                       child: TextButton(
                         
                         onPressed: () {
-                          Navigator.of(context).pushReplacementNamed('/home/');
+                          Navigator.of(context).pushReplacementNamed('/auth/');
                         },
                         style: TextButton.styleFrom(
                           foregroundColor: Colors.black,
