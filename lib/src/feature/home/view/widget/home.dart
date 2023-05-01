@@ -85,7 +85,7 @@ class UserHome extends StatelessWidget {
                 mainAxisSpacing: 8,
               ),
               itemBuilder: (context, index) {
-                // Reduz a descrição até o segundo ponto final
+                // Reduz a descrição até o primeiro ponto final
                 final description = data[index]['description'].toString().split('.').take(2).join('.');
 
                 return Container(

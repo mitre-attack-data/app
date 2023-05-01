@@ -71,6 +71,7 @@ flutter:
     - lib/assets/
     - lib/assets/i18n/
     - lib/assets/images/
+    ##- /home/ediss/Área de Trabalho/tactics.dart
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
