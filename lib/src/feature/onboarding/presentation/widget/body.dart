@@ -14,16 +14,16 @@ class _BodyState extends State<Body> {
   List<Map<String, String>> splashData = [
     {
       "tile": "Mitre",
-      "text": "Uma base de conhecimento acessível globalmente...",
+      "text": " 'Uma base de conhecimento acessível globalmente... ",
     },
     {
       "tile": "Segurança",
       "text":
-          "...de técnicas de ataque e defesa sobre segurança cibernética.",
+          "...com milhares técnicas de ataque e defesa sobre segurança.'",
     },
     {
       "tile": "Aberto para todos!",
-      "text": "Juntando a comunidade para desenvolver uma cibersegurança melhor!",
+      "text": "'Juntando uma comunidade enorme de desenvolvedores para fazer uma cibersegurança melhor para todos!'",
     },
   ];
   @override
@@ -37,8 +37,9 @@ class _BodyState extends State<Body> {
           children: <Widget>[
             const Spacer(flex: 3),
             Expanded(
-              flex: 5,
+              flex: 6,
               child: PageView.builder(
+                
                 onPageChanged: (value) {
                   setState(() {
                     currentPage = value;
@@ -57,6 +58,7 @@ class _BodyState extends State<Body> {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 20),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: <Widget>[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -64,11 +66,34 @@ class _BodyState extends State<Body> {
                           splashData.length, (index) => buildDot(index: index)),
                     ),
                     const Spacer(),
-                    TextButton(
-                      child: const Text("Continue"),
-                      onPressed: () {
-                        Navigator.of(context).pushReplacementNamed('/home/');//trocar pra tela de login depois
-                      },
+                    Container(
+                      height: 50,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color:Color.fromARGB(202, 238, 88, 2),
+                        boxShadow: const [
+
+                          BoxShadow(
+                            blurRadius: 5.0,
+                            //blurStyle: BlurStyle.inner,
+                            offset: Offset(4, 4),
+                          ),
+                          
+                        ]
+                      ),
+                      child: TextButton(
+                        
+                        onPressed: () {
+                          Navigator.of(context).pushReplacementNamed('/home/');
+                        },
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.black,
+                        ),
+
+                        child: const Text("CONTINUAR", style: TextStyle(fontWeight: FontWeight.bold)),
+                        
+                      ),
                     ),
                     const Spacer(),
                   ],
@@ -87,7 +112,7 @@ class _BodyState extends State<Body> {
       height: 6,
       width: currentPage == index ? 20 : 6,
       decoration: BoxDecoration(
-          color: Color.fromARGB(255, 0, 0, 0),
+          color: Color(0xFFD21312),
           borderRadius: BorderRadius.circular(5)),
     );
   }
