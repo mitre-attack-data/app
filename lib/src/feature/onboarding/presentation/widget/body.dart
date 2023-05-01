@@ -19,7 +19,7 @@ class _BodyState extends State<Body> {
     {
       "tile": "Segurança",
       "text":
-          "...com milhares técnicas de ataque e defesa sobre segurança.'",
+          "...com milhares técnicas de ataque e defesa sobre segurança cibernética.'",
     },
     {
       "tile": "Aberto para todos!",

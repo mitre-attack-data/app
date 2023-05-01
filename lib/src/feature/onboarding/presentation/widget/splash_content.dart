@@ -20,7 +20,7 @@ class SplashContent extends StatelessWidget {
             title!,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              fontSize: 72.0,
+              fontSize:54.0,
               color: Color.fromARGB(202, 238, 88, 2),
               fontWeight: FontWeight.bold,
               shadows: [
@@ -58,7 +58,7 @@ class SplashContent extends StatelessWidget {
             text!,
             textAlign: TextAlign.center,
             style: const TextStyle(
-              height: 5,
+              height: 2,
               fontSize: 24.0,
               fontStyle: FontStyle.italic,
               color: Color.fromARGB(200, 0, 0, 0),
