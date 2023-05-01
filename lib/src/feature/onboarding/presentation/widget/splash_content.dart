@@ -17,14 +17,20 @@ class SplashContent extends StatelessWidget {
           title!,
           textAlign: TextAlign.center,
           style: const TextStyle(
-            fontSize: 16,
-            color: Color.fromARGB(255, 0, 0, 0),
+            fontSize: 36.0,
+            color: Color(0xFFD21312),
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
           text!,
           textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontSize: 20.0,
+            color: Color.fromARGB(255, 201, 51, 51),
+            fontWeight: FontWeight.bold,
+          ),
+          
         ),
       ],
     );
