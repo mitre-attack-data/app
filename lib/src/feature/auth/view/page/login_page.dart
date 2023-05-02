@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:localization/localization.dart';
+import 'package:mitre_app/src/common/custom_elevated_button.dart';
+import 'package:mitre_app/src/common/custom_text_form_field.dart';
 import 'package:mitre_app/src/feature/auth/viewmodel/login_viewmodel.dart';
 
 class LoginPage extends StatefulWidget {
@@ -49,80 +51,45 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-                TextFormField(
+                CustomFormTextField(
                   controller: _emailController,
-                  decoration: InputDecoration(
-                    labelText: 'email'.i18n(),
-                    hintText: 'example@email.com'.i18n(),
-                    hintStyle:
-                        const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                    icon: const Icon(Icons.email_outlined, color: Colors.black),
-                  ),
-                  validator: (email) => _viewModel.emailValidator(email),
-                  style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  labelText: 'email'.i18n(),
+                  hintText: 'example@email.com'.i18n(),
+                  icon: const Icon(Icons.email),
+                  validatorFunction: (email) =>
+                      _viewModel.emailValidator(email),
                 ),
-                TextFormField(
+                CustomFormTextField(
                   controller: _passwordController,
                   obscureText: obscureText,
-                  decoration: InputDecoration(
-                    labelText: 'password'.i18n(),
-                    hintText: 'password'.i18n(),
-                    hintStyle:
-                        const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-                    icon: hiddenButton(),
-                  ),
-                  validator: (password) =>
+                  labelText: 'password'.i18n(),
+                  hintText: 'password'.i18n(),
+                  icon: hiddenButton(),
+                  validatorFunction: (password) =>
                       _viewModel.passwordValidator(password),
-                  style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
                 ),
                 const SizedBox(height: 12),
                 const Divider(),
-                ElevatedButton(
-                  onPressed: () async => {
-                    await _viewModel.login(
-                        _formKey, _emailController, _passwordController),
-                    if (_viewModel.isLogged)
-                      {Navigator.pushNamed(context, '/home')}
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color.fromARGB(202, 238, 88, 2)),
-                  ),
-                  child: Text(
-                    'login'.i18n(),
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 2, 2, 2),
-                    ),
-                  ),
+                CustomElevatedButton(
+                    text: 'login',
+                    onPressed: () async => {
+                          await _viewModel.login(
+                              _formKey, _emailController, _passwordController),
+                          if (_viewModel.isLogged)
+                            {Navigator.pushNamed(context, '/home')}
+                        }),
+                const SizedBox(height: 36),
+                CustomElevatedButton(
+                  text: 'sign_up',
+                  onPressed: () async =>
+                      {Navigator.pushNamed(context, 'sign-up')},
                 ),
                 const SizedBox(height: 36),
-                ElevatedButton(
-                    onPressed: () async =>
-                        {Navigator.pushNamed(context, 'sign-up')},
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          const Color.fromARGB(202, 238, 88, 2)),
-                    ),
-                    child: Text(
-                      'sign_up'.i18n(),
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 2, 2, 2),
-                      ),
-                    )),
-                const SizedBox(height: 36),
-                ElevatedButton(
-                    onPressed: () async =>
-                        {Navigator.pushNamed(context, 'forgot-password')},
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all<Color>(
-                          const Color.fromARGB(202, 238, 88, 2)),
-                    ),
-                    child: Text(
-                      'forgot_password'.i18n(),
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 2, 2, 2),
-                      ),
-                    )),
+                CustomElevatedButton(
+                  text: 'forgot_password',
+                  onPressed: () async =>
+                      {Navigator.pushNamed(context, 'forgot-password')},
+                ),
                 const SizedBox(height: 30.0),
                 const Center(
                   child: Text(

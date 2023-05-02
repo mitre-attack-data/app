@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:localization/localization.dart';
+import 'package:mitre_app/src/common/custom_elevated_button.dart';
+import 'package:mitre_app/src/common/custom_text_form_field.dart';
 import 'package:mitre_app/src/feature/auth/viewmodel/forgot_pwd_viewmodel.dart';
 
 class ForgotPassword extends StatefulWidget {
@@ -20,7 +22,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     Widget confirmButton = ElevatedButton(
       child: Text("ok"),
       onPressed: () {
-        Navigator.pushNamed(context, '/auth');
+        Navigator.pushNamed(context, 'forgot-password');
       },
     );
     AlertDialog alert =
@@ -48,37 +50,38 @@ class _ForgotPasswordState extends State<ForgotPassword> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                TextFormField(
+                CustomFormTextField(
                   controller: _emailController,
-                  decoration: InputDecoration(
-                    labelText: 'email'.i18n(),
-                    hintText: 'example@email.com'.i18n(),
-                    icon: const Icon(Icons.email_outlined, color: Colors.black),
-                  ),
-                  validator: (email) => _viewModel.emailValidator(email),
+                  labelText: 'email'.i18n(),
+                  hintText: 'example@email.com'.i18n(),
+                  icon: const Icon(Icons.email_outlined, color: Colors.black),
+                  validatorFunction: (email) =>
+                      _viewModel.emailValidator(email),
                 ),
                 const SizedBox(height: 12),
-                ElevatedButton(
-                    onPressed: () async => {
-                          reqPasswordUpdate = await _viewModel
-                              .reqPasswordUpdate(_formKey, _emailController),
-                          if (reqPasswordUpdate)
-                            {
-                              showAlertDialog(
-                                  context, reqPasswordUpdate.toString())
-                            }
-                          else
-                            {
-                              showAlertDialog(
-                                  context, reqPasswordUpdate.toString())
-                            },
-                        },
-                    child: Text('send'.i18n())),
-                    const SizedBox(height: 12),
-                ElevatedButton(
+                CustomElevatedButton(
+                  text: 'send',
+                  onPressed: () async => {
+                    reqPasswordUpdate = await _viewModel.reqPasswordUpdate(
+                        _formKey, _emailController),
+                    if (reqPasswordUpdate)
+                      {showAlertDialog(context, reqPasswordUpdate.toString())}
+                    else
+                      {showAlertDialog(context, reqPasswordUpdate.toString())},
+                  },
+                ),
+                const SizedBox(height: 12),
+                CustomElevatedButton(
+                    text: 'I have confirmation code',
                     onPressed: () async =>
-                        Navigator.pushNamed(context, '/reset-confirmation'),
-                    child: Text('I have confirmation code'.i18n())),
+                        showAlertDialog(context, 'Not implemented yet!')
+                    // Navigator.pushNamed(context, '/reset-confirmation'),
+                    ),
+                const SizedBox(height: 12),
+                CustomElevatedButton(
+                  text: 'back login page',
+                  onPressed: () async => Navigator.pushNamed(context, '/auth'),
+                ),
               ],
             ),
           ),

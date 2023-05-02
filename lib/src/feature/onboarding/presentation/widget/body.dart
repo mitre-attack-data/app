@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mitre_app/src/common/custom_elevated_button.dart';
 import 'package:mitre_app/src/feature/onboarding/presentation/widget/splash_content.dart';
-import 'package:mitre_app/src/main.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
-  
+
   @override
   _BodyState createState() => _BodyState();
 }
@@ -23,23 +23,21 @@ class _BodyState extends State<Body> {
     },
     {
       "tile": "Aberto para todos!",
-      "text": "'Juntando uma comunidade enorme de desenvolvedores para fazer uma cibersegurança melhor para todos!'",
+      "text":
+          "'Juntando uma comunidade enorme de desenvolvedores para fazer uma cibersegurança melhor para todos!'",
     },
   ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: SizedBox(
-        
         width: double.infinity,
         child: Column(
-          
           children: <Widget>[
-            const Spacer(flex: 3),
+            const Spacer(flex: 1),
             Expanded(
               flex: 6,
               child: PageView.builder(
-                
                 onPageChanged: (value) {
                   setState(() {
                     currentPage = value;
@@ -69,29 +67,20 @@ class _BodyState extends State<Body> {
                       height: 50,
                       width: 100,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color:Color.fromARGB(202, 238, 88, 2),
-                        boxShadow: const [
-
-                          BoxShadow(
-                            blurRadius: 5.0,
-                            //blurStyle: BlurStyle.inner,
-                            offset: Offset(4, 4),
-                          ),
-                          
-                        ]
-                      ),
-                      child: TextButton(
-                        
+                          borderRadius: BorderRadius.circular(20),
+                          color: const Color.fromARGB(202, 238, 88, 2),
+                          boxShadow: const [
+                            BoxShadow(
+                              blurRadius: 5.0,
+                              //blurStyle: BlurStyle.inner,
+                              offset: Offset(4, 4),
+                            ),
+                          ]),
+                      child: CustomElevatedButton(
+                        text: "Continuar",
                         onPressed: () {
                           Navigator.of(context).pushReplacementNamed('/auth/');
                         },
-                        style: TextButton.styleFrom(
-                          foregroundColor: Colors.black,
-                        ),
-
-                        child: const Text("CONTINUAR", style: TextStyle(fontWeight: FontWeight.bold)),
-                        
                       ),
                     ),
                     const Spacer(),
@@ -111,7 +100,7 @@ class _BodyState extends State<Body> {
       height: 6,
       width: currentPage == index ? 20 : 6,
       decoration: BoxDecoration(
-          color: Color(0xFFD21312),
+          color: const Color(0xFFD21312),
           borderRadius: BorderRadius.circular(5)),
     );
   }

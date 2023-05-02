@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:localization/localization.dart';
+import 'package:mitre_app/src/common/custom_elevated_button.dart';
+import 'package:mitre_app/src/common/custom_text_form_field.dart';
 import 'package:mitre_app/src/feature/auth/viewmodel/register_viewmodel.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -34,7 +36,7 @@ class _RegisterPageState extends State<RegisterPage> {
     Widget confirmButton = ElevatedButton(
       child: Text("ok"),
       onPressed: () {
-        Navigator.pushNamed(context, '/auth');
+        Navigator.pushNamed(context, 'sign-up');
       },
     );
     AlertDialog alert =
@@ -42,7 +44,7 @@ class _RegisterPageState extends State<RegisterPage> {
       confirmButton,
     ]);
     showDialog(
-      context: context, 
+      context: context,
       builder: (BuildContext context) {
         return alert;
       },
@@ -62,80 +64,65 @@ class _RegisterPageState extends State<RegisterPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                TextFormField(
+                CustomFormTextField(
                   controller: _nameController,
-                  decoration: InputDecoration(
-                    labelText: 'name'.i18n(),
-                    hintText: 'your name'.i18n(),
-                  ),
-                  validator: (name) => _viewModel.nameValidator(name),
+                  labelText: 'name'.i18n(),
+                  hintText: 'your name'.i18n(),
+                  validatorFunction: (name) => _viewModel.nameValidator(name),
                 ),
-                TextFormField(
+                CustomFormTextField(
                   controller: _usernameController,
-                  decoration: InputDecoration(
-                    labelText: 'user name'.i18n(),
-                    hintText: 'your username'.i18n(),
-                  ),
-                  validator: (fullName) => _viewModel.nameValidator(fullName),
+                  labelText: 'user name'.i18n(),
+                  hintText: 'your username'.i18n(),
+                  validatorFunction: (fullName) =>
+                      _viewModel.nameValidator(fullName),
                 ),
-                TextFormField(
+                CustomFormTextField(
                   controller: _emailController,
-                  decoration: InputDecoration(
-                    labelText: 'email'.i18n(),
-                    hintText: 'example@email.com'.i18n(),
-                    icon: const Icon(Icons.email_outlined, color: Colors.black),
-                  ),
-                  validator: (email) => _viewModel.emailValidator(email),
+                  labelText: 'email'.i18n(),
+                  hintText: 'example@email.com'.i18n(),
+                  icon: const Icon(Icons.email_outlined, color: Colors.black),
+                  validatorFunction: (email) =>
+                      _viewModel.emailValidator(email),
                 ),
-                TextFormField(
+                CustomFormTextField(
                   controller: _passwordController,
-                  obscureText: obscureText,
-                  decoration: InputDecoration(
-                    labelText: 'password'.i18n(),
-                    hintText: 'password'.i18n(),
-                    icon: hideShowIconButton(),
-                  ),
-                  validator: (password) =>
+                  labelText: 'password'.i18n(),
+                  hintText: 'password'.i18n(),
+                  icon: hideShowIconButton(),
+                  validatorFunction: (password) =>
                       _viewModel.passwordValidator(password),
                 ),
-                TextFormField(
+                CustomFormTextField(
                   controller: _passwordConfirmController,
-                  obscureText: obscureText,
-                  decoration: InputDecoration(
-                    labelText: 'confirm password'.i18n(),
-                    hintText: 'confirm password'.i18n(),
-                    icon: hideShowIconButton(),
-                  ),
-                  validator: (confirmPassword) =>
+                  labelText: 'confirm password'.i18n(),
+                  hintText: 'confirm password'.i18n(),
+                  icon: hideShowIconButton(),
+                  validatorFunction: (confirmPassword) =>
                       _viewModel.passwordConfirmValidator(
                           confirmPassword, _passwordController.text),
                 ),
                 const SizedBox(height: 12),
-                ElevatedButton(
-                    onPressed: () async =>
-                        Navigator.pushNamed(context, '/auth'),
-                    child: Text('back login page'.i18n())),
+                CustomElevatedButton(
+                  text: 'back login page',
+                  onPressed: () async => Navigator.pushNamed(context, '/auth'),
+                ),
                 const SizedBox(height: 36),
-                ElevatedButton(
-                    onPressed: () async => {
-                          successRegister = await _viewModel.register(
-                              _formKey,
-                              _nameController,
-                              _emailController,
-                              _usernameController,
-                              _passwordController),
-                          if (successRegister)
-                            {
-                              showAlertDialog(
-                                  context, successRegister.toString())
-                            }
-                          else
-                            {
-                              showAlertDialog(
-                                  context, successRegister.toString())
-                            },
-                        },
-                    child: Text('sign_up'.i18n()))
+                CustomElevatedButton(
+                  text: 'sign_up',
+                  onPressed: () async => {
+                    successRegister = await _viewModel.register(
+                        _formKey,
+                        _nameController,
+                        _emailController,
+                        _usernameController,
+                        _passwordController),
+                    if (successRegister)
+                      {showAlertDialog(context, successRegister.toString())}
+                    else
+                      {showAlertDialog(context, successRegister.toString())},
+                  },
+                )
               ],
             ),
           ),

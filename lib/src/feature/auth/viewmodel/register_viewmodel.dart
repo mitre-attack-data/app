@@ -37,7 +37,7 @@ class RegisterViewModel {
     return null;
   }
 
-  Future register(
+  Future<bool> register(
       GlobalKey<FormState> formKey,
       TextEditingController fullNameController,
       TextEditingController emailController,
@@ -63,6 +63,6 @@ class RegisterViewModel {
         return userRegistration;
       }
     }
-    return "Dados invalidos";
+    return false;
   }
 }
