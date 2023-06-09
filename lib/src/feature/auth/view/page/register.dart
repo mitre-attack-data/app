@@ -87,6 +87,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 CustomFormTextField(
                   controller: _passwordController,
+                  obscureText: obscureText,
                   labelText: 'password'.i18n(),
                   hintText: 'password'.i18n(),
                   icon: hideShowIconButton(),
@@ -95,6 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 CustomFormTextField(
                   controller: _passwordConfirmController,
+                  obscureText: obscureText,
                   labelText: 'confirm password'.i18n(),
                   hintText: 'confirm password'.i18n(),
                   icon: hideShowIconButton(),

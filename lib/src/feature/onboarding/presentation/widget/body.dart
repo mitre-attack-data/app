@@ -79,7 +79,9 @@ class _BodyState extends State<Body> {
                       child: CustomElevatedButton(
                         text: "Continuar",
                         onPressed: () {
-                          Navigator.of(context).pushReplacementNamed('/auth/');
+                          // TODO: proposito de testes
+                          // Navigator.of(context).pushReplacementNamed('/auth/');
+                          Navigator.of(context).pushReplacementNamed('/home/');
                         },
                       ),
                     ),

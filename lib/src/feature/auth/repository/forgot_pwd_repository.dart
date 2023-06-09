@@ -2,10 +2,13 @@ import 'package:dio/dio.dart';
 import 'package:mitre_app/src/common/configs.dart';
 
 class ForgotPasswordRepository {
+  
+  final Dio _dio = Dio();
+  EnvVariables env = EnvVariables();
+  
   Future<bool> reqPasswordUpdate(String email) async {
-    EnvVariables env = EnvVariables();
 
-    var response = await Dio().post(
+    var response = await _dio.post(
         '${env.HOST_URL}/api/v1/pwd/reset-solicitation/',
         data: {"email": email});
 

@@ -1,55 +1,9 @@
-// import 'package:flutter/material.dart';
-
-// class UserHome extends StatelessWidget {
-//   const UserHome({super.key});
-
-//   PreferredSizeWidget _homeAppBar(String text) {
-//     return AppBar(
-//       title: Text(text,
-//           style: const TextStyle(
-//               color: Colors.black,
-//               fontFamily: 'Billabong',
-//               fontSize: 32,
-//               fontWeight: FontWeight.w400)),
-//       backgroundColor: Color.fromARGB(202, 238, 88, 2),
-//       actions: const [
-//         Icon(Icons.share, color: Colors.black),
-//         SizedBox(width: 16),
-//       ],
-//     );
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: _homeAppBar('Mitre'),
-//       body: const Center(
-//           child: Text('HOME',
-//               style: TextStyle(fontSize: 48, fontFamily: 'Billabong'))),
-//     );
-//   }
-// }
-
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-// class UserHome extends StatelessWidget {
-//   const UserHome({Key? key});
+import 'package:mitre_app/assets/mock/mitre_data/all_tactics.dart';
 
-//   PreferredSizeWidget _homeAppBar(String text) {
-//     return AppBar(
-//       title: Text(
-//         text,
-//         style: const TextStyle(
-//           color: Color.fromARGB(255, 0, 0, 0),
-//           fontFamily: 'Billabong',
-//           fontSize: 32,
-//           fontWeight: FontWeight.w400,
-//         ),
-//       ),
-//       backgroundColor: Color.fromARGB(202, 238, 88, 2),
 
 class UserHome extends StatelessWidget {
   const UserHome({super.key});
