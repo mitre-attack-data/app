@@ -3,19 +3,34 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:mitre_app/assets/mock/mitre_data/all_tactics.dart';
+import 'package:mitre_app/src/feature/home/view/widget/techniques.dart';
 
-
-class UserHome extends StatelessWidget {
+class UserHome extends StatefulWidget {
   const UserHome({super.key});
 
-  PreferredSizeWidget _homeAppBar(String text) {
+  @override
+  State<UserHome> createState() => _UserHomeState();
+}
+
+class _UserHomeState extends State<UserHome> {
+  PreferredSizeWidget _homeAppBar(String title, {String subtitle = ''}) {
     return AppBar(
-      title: Text(text,
-          style: const TextStyle(
-              color: Colors.black,
-              fontFamily: 'Billabong',
-              fontSize: 32,
-              fontWeight: FontWeight.w400)),
+      title: Row(
+        children: [
+          Text('$title ',
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Billabong',
+                  fontSize: 28,
+                  fontWeight: FontWeight.w900)),
+          Text(subtitle,
+              style: const TextStyle(
+                color: Colors.black,
+                fontFamily: 'Billabong',
+                fontSize: 28,
+              )),
+        ],
+      ),
       backgroundColor: Colors.white,
       actions: const [
         Icon(Icons.share, color: Colors.black),
@@ -25,7 +40,8 @@ class UserHome extends StatelessWidget {
   }
 
   Future<Map<String, dynamic>> _fetchData() async {
-    final response = await http.get(Uri.parse('https://raw.githubusercontent.com/MISP/misp-galaxy/main/clusters/mitre-ics-tactics.json'));
+    final response = await http.get(Uri.parse(
+        'https://raw.githubusercontent.com/MISP/misp-galaxy/main/clusters/mitre-ics-tactics.json'));
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
@@ -33,66 +49,63 @@ class UserHome extends StatelessWidget {
     }
   }
 
+  List data = MITRE_TACTICS;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _homeAppBar('Mitre'),
-      body: FutureBuilder<Map<String, dynamic>>(
-        future: _fetchData(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final data = List<Map<String, dynamic>>.from(snapshot.data!['values']);
-            return GridView.builder(
-              padding: const EdgeInsets.all(8),
-              itemCount: data.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1.5,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-              ),
-              itemBuilder: (context, index) {
-                // Reduz a descrição até o primeiro ponto final
-                final description = data[index]['description'].toString().split('.').take(2).join('.');
+    int totalItems = MITRE_TACTICS.length;
+    List<bool> _isExpanded = List.generate(totalItems, (_) => false);
 
-                return Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color.fromARGB(255, 236, 97, 3).withOpacity(0.3),
-                        spreadRadius: 1,
-                        blurRadius: 3,
-                        offset: const Offset(0, 3),
+    return Scaffold(
+      appBar: _homeAppBar('Mitre', subtitle: 'Tactics'),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: ExpansionPanelList.radio(
+            expansionCallback: (int index, bool isExpanded) {
+              setState(() => _isExpanded[index] = !isExpanded);
+            },
+            children: MITRE_TACTICS.map<ExpansionPanel>((dynamic data) {
+              return ExpansionPanelRadio(
+                value: data['name'],
+                canTapOnHeader: true,
+                headerBuilder: (BuildContext context, bool isExpanded) {
+                  return ListTile(
+                    title: Text(data['name']),
+                  );
+                },
+                body: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Text(data['description']),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Techniques(data),
+                                ),
+                              );
+                            },
+                            child: const Text('See techniques'),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        data[index]['value'],
-                        style: const TextStyle(fontSize: 18),
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Description: $description.',
-                        style: const TextStyle(fontSize: 14),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                );
-              },
-            );
-          } else if (snapshot.hasError) {
-            return Center(child: Text("${snapshot.error}"));
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
+          ),
+        ),
       ),
     );
   }
