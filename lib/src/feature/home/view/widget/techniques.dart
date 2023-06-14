@@ -23,17 +23,19 @@ class _TechniquesState extends State<Techniques> {
         },
         child: const Icon(Icons.arrow_back),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Center(
-                child: Text(
-              widget.data['description'],
-            )),
-          ),
-        SizedBox(height: 28),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: Center(
+                  child: Text(
+                widget.data['description'],
+              )),
+            ),
+          SizedBox(height: 28),
+          ],
+        ),
       ),
     );
   }

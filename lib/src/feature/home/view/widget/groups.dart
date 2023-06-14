@@ -47,11 +47,12 @@ class _GroupsState extends State<Groups> {
                           onTap: () {
                             debugPrint('Card tapped.');
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => GroupsDetails(item['group_alias']),
-                                ),
-                              );
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    GroupsDetails(item['group_alias']),
+                              ),
+                            );
                           },
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width * 0.8,
@@ -113,29 +114,23 @@ class _GroupsState extends State<Groups> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarCustom('app_name'.i18n(), subtitle: 'groups'.i18n()),
-      body: Column(
-        children: [
-          Center(
-              child: Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text('what_are_groups_title'.i18n(),
-                    style:
-                        const TextStyle(fontSize: 18, fontFamily: 'Billabong')),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text(
-                  'what_are_groups_desc'.i18n(),
-                  style: const TextStyle(fontSize: 14),
-                ),
-              ],
+      body: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text('what_are_groups_title'.i18n(),
+                style: const TextStyle(fontSize: 18, fontFamily: 'Billabong')),
+            const SizedBox(
+              height: 20,
             ),
-          )),
-          carouselWithIndicatorDemo(context),
-        ],
+            Text(
+              'what_are_groups_desc'.i18n(),
+              style: const TextStyle(fontSize: 14),
+            ),
+            carouselWithIndicatorDemo(context),
+          ],
+        ),
       ),
     );
   }

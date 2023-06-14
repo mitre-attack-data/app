@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localization/localization.dart';
 import 'package:mitre_app/src/common/custom_elevated_button.dart';
 import 'package:mitre_app/src/feature/onboarding/presentation/widget/splash_content.dart';
 
@@ -13,13 +14,13 @@ class _BodyState extends State<Body> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
-      "tile": "Mitre",
+      "tile": "app_name".i18n(),
       "text": " 'Uma base de conhecimento acessível globalmente... ",
     },
     {
       "tile": "Segurança",
       "text":
-          "...com milhares técnicas de ataque e defesa sobre segurança cibernética.'",
+          "...com milhares técnicas de ataque e defesa sobre segurança cibernética.",
     },
     {
       "tile": "Aberto para todos!",
