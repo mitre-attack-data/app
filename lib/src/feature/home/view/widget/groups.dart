@@ -3,6 +3,7 @@ import 'package:localization/localization.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:mitre_app/assets/mock/mitre_data/all_groups.dart';
 import 'package:mitre_app/src/common/app_bar.dart';
+import 'package:mitre_app/src/feature/home/view/widget/groups_details.dart';
 
 class Groups extends StatefulWidget {
   const Groups({super.key});
@@ -45,6 +46,12 @@ class _GroupsState extends State<Groups> {
                               Color.fromARGB(255, 1, 48, 87).withAlpha(30),
                           onTap: () {
                             debugPrint('Card tapped.');
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => GroupsDetails(item['group_alias']),
+                                ),
+                              );
                           },
                           child: SizedBox(
                             width: MediaQuery.of(context).size.width * 0.8,

@@ -20,7 +20,7 @@ class _HomeTacticsState extends State<HomeTactics> {
     List<bool> _isExpanded = List.generate(totalItems, (_) => false);
 
     return Scaffold(
-      appBar: appBarCustom('app_name'.i18n(), subtitle: 'tactics'.i18n()),
+      appBar: appBarCustom('app_name'.i18n(), subtitle: 'tactics'.i18n()), 
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12),

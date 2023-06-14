@@ -12,13 +12,17 @@ class Techniques extends StatefulWidget {
 }
 
 class _TechniquesState extends State<Techniques> {
-  List techniques = [];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBarCustom('techniques'.i18n(),
+      appBar: appBarCustom('technique'.i18n(),
           subtitle: widget.data['name'], automaticallyImplyLeading: false),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pop();
+        },
+        child: const Icon(Icons.arrow_back),
+      ),
       body: Column(
         children: [
           Padding(
@@ -28,16 +32,7 @@ class _TechniquesState extends State<Techniques> {
               widget.data['description'],
             )),
           ),
-          IconButton(
-            padding: const EdgeInsets.all(18),
-            alignment: Alignment.centerLeft,
-            tooltip: 'go_back'.i18n(),
-            enableFeedback: true,
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-          )
+        SizedBox(height: 28),
         ],
       ),
     );

@@ -1,4 +1,4 @@
-const List MITRE_GROUP_DETAILS = [
+const List<Map<String, dynamic>> MITRE_GROUP_DETAILS = [
   {
     "base_info": {
       "group_id": "intrusion-set--c47f937f-1022-4f42-8525-e7a4779a14cb",
