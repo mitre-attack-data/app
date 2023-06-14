@@ -20,13 +20,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   showAlertDialog(BuildContext context, String message) {
     Widget confirmButton = ElevatedButton(
-      child: Text("ok"),
+      child: const Text("ok"),
       onPressed: () {
         Navigator.pushNamed(context, 'forgot-password');
       },
     );
     AlertDialog alert =
-        AlertDialog(title: Text("Aviso"), content: Text(message), actions: [
+        AlertDialog(title: Text('warning'.i18n()), content: Text(message), actions: [
       confirmButton,
     ]);
     showDialog(
@@ -60,7 +60,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 ),
                 const SizedBox(height: 12),
                 CustomElevatedButton(
-                  text: 'send',
+                  text: 'send'.i18n(),
                   onPressed: () async => {
                     reqPasswordUpdate = await _viewModel.reqPasswordUpdate(
                         _formKey, _emailController),
@@ -72,14 +72,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 ),
                 const SizedBox(height: 12),
                 CustomElevatedButton(
-                    text: 'I have confirmation code',
+                    text: 'i_have_confirmation_code'.i18n(),
                     onPressed: () async =>
                         showAlertDialog(context, 'Not implemented yet!')
                     // Navigator.pushNamed(context, '/reset-confirmation'),
                     ),
                 const SizedBox(height: 12),
                 CustomElevatedButton(
-                  text: 'back login page',
+                  text: 'back_login_page'.i18n(),
                   onPressed: () async => Navigator.pushNamed(context, '/auth'),
                 ),
               ],

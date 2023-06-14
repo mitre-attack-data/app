@@ -1,54 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
+import 'package:localization/localization.dart';
 import 'package:mitre_app/assets/mock/mitre_data/all_tactics.dart';
+import 'package:mitre_app/src/common/app_bar.dart';
 import 'package:mitre_app/src/feature/home/view/widget/techniques.dart';
 
-class UserHome extends StatefulWidget {
-  const UserHome({super.key});
+class HomeTactics extends StatefulWidget {
+  const HomeTactics({super.key});
 
   @override
-  State<UserHome> createState() => _UserHomeState();
+  State<HomeTactics> createState() => _HomeTacticsState();
 }
 
-class _UserHomeState extends State<UserHome> {
-  PreferredSizeWidget _homeAppBar(String title, {String subtitle = ''}) {
-    return AppBar(
-      title: Row(
-        children: [
-          Text('$title ',
-              style: const TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'Billabong',
-                  fontSize: 28,
-                  fontWeight: FontWeight.w900)),
-          Text(subtitle,
-              style: const TextStyle(
-                color: Colors.black,
-                fontFamily: 'Billabong',
-                fontSize: 28,
-              )),
-        ],
-      ),
-      backgroundColor: Colors.white,
-      actions: const [
-        Icon(Icons.share, color: Colors.black),
-        SizedBox(width: 16),
-      ],
-    );
-  }
-
-  Future<Map<String, dynamic>> _fetchData() async {
-    final response = await http.get(Uri.parse(
-        'https://raw.githubusercontent.com/MISP/misp-galaxy/main/clusters/mitre-ics-tactics.json'));
-    if (response.statusCode == 200) {
-      return json.decode(response.body);
-    } else {
-      throw Exception('Failed to fetch data');
-    }
-  }
-
+class _HomeTacticsState extends State<HomeTactics> {
   List data = MITRE_TACTICS;
 
   @override
@@ -57,7 +20,7 @@ class _UserHomeState extends State<UserHome> {
     List<bool> _isExpanded = List.generate(totalItems, (_) => false);
 
     return Scaffold(
-      appBar: _homeAppBar('Mitre', subtitle: 'Tactics'),
+      appBar: appBarCustom('app_name'.i18n(), subtitle: 'tactics'.i18n()),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12),
@@ -95,7 +58,7 @@ class _UserHomeState extends State<UserHome> {
                                 ),
                               );
                             },
-                            child: const Text('See techniques'),
+                            child: Text('see_techniques'.i18n()),
                           ),
                         ],
                       ),

@@ -41,10 +41,10 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const Center(
+                Center(
                   child: Text(
-                    'Faça login',
-                    style: TextStyle(
+                    'sign_in'.i18n(),
+                    style: const TextStyle(
                       fontSize: 24.0,
                       color: Color.fromARGB(255, 3, 3, 3),
                       fontWeight: FontWeight.bold,
@@ -71,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 12),
                 const Divider(),
                 CustomElevatedButton(
-                    text: 'login',
+                    text: 'login'.i18n(),
                     onPressed: () async => {
                           await _viewModel.login(
                               _formKey, _emailController, _passwordController),
@@ -80,21 +80,21 @@ class _LoginPageState extends State<LoginPage> {
                         }),
                 const SizedBox(height: 36),
                 CustomElevatedButton(
-                  text: 'sign_up',
+                  text: 'sign_up'.i18n(),
                   onPressed: () async =>
                       {Navigator.pushNamed(context, 'sign-up')},
                 ),
                 const SizedBox(height: 36),
                 CustomElevatedButton(
-                  text: 'forgot_password',
+                  text: 'forgot_password'.i18n(),
                   onPressed: () async =>
                       {Navigator.pushNamed(context, 'forgot-password')},
                 ),
                 const SizedBox(height: 30.0),
-                const Center(
+                Center(
                   child: Text(
-                    'Mitre',
-                    style: TextStyle(
+                    'app_name'.i18n(),
+                    style: const TextStyle(
                       color: Color.fromARGB(255, 2, 2, 2),
                       fontSize: 30,
                       fontWeight: FontWeight.bold,

@@ -34,13 +34,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
   showAlertDialog(BuildContext context, String message) {
     Widget confirmButton = ElevatedButton(
-      child: Text("ok"),
+      child: const Text("ok"),
       onPressed: () {
         Navigator.pushNamed(context, 'sign-up');
       },
     );
     AlertDialog alert =
-        AlertDialog(title: Text("Aviso"), content: Text(message), actions: [
+        AlertDialog(title: Text('warning'.i18n()), content: Text(message), actions: [
       confirmButton,
     ]);
     showDialog(
@@ -67,13 +67,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 CustomFormTextField(
                   controller: _nameController,
                   labelText: 'name'.i18n(),
-                  hintText: 'your name'.i18n(),
+                  hintText: 'your_name'.i18n(),
                   validatorFunction: (name) => _viewModel.nameValidator(name),
                 ),
                 CustomFormTextField(
                   controller: _usernameController,
-                  labelText: 'user name'.i18n(),
-                  hintText: 'your username'.i18n(),
+                  labelText: 'username'.i18n(),
+                  hintText: 'your_username'.i18n(),
                   validatorFunction: (fullName) =>
                       _viewModel.nameValidator(fullName),
                 ),
@@ -97,8 +97,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 CustomFormTextField(
                   controller: _passwordConfirmController,
                   obscureText: obscureText,
-                  labelText: 'confirm password'.i18n(),
-                  hintText: 'confirm password'.i18n(),
+                  labelText: 'confirm_password'.i18n(),
+                  hintText: 'confirm_password'.i18n(),
                   icon: hideShowIconButton(),
                   validatorFunction: (confirmPassword) =>
                       _viewModel.passwordConfirmValidator(
@@ -106,12 +106,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 12),
                 CustomElevatedButton(
-                  text: 'back login page',
+                  text: 'back_login_page'.i18n(),
                   onPressed: () async => Navigator.pushNamed(context, '/auth'),
                 ),
                 const SizedBox(height: 36),
                 CustomElevatedButton(
-                  text: 'sign_up',
+                  text: 'sign_up'.i18n(),
                   onPressed: () async => {
                     successRegister = await _viewModel.register(
                         _formKey,

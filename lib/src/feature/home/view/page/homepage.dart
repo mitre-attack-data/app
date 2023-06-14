@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:localization/localization.dart';
 
 import '../widget/account.dart';
-import '../widget/home.dart';
-import '../widget/search.dart';
+import '../widget/home_tactics.dart';
+import '../widget/groups.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,8 +17,8 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
 
   static final List<Widget> _pages = [
-    UserHome(),
-    UserSearch(),
+    HomeTactics(),
+    Groups(),
     UserAccount(),
   ];
 
@@ -37,11 +39,22 @@ class _HomePageState extends State<HomePage> {
         showSelectedLabels: true,
         showUnselectedLabels: true,
         onTap: _navigateBottomNavBar,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+        items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle_outlined), label: 'Account'),
+              icon: SvgPicture.asset(
+                'lib/assets/icons/tactics.svg',
+                width: 24,
+              ),
+              label: 'tactics'.i18n()),
+          BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                'lib/assets/icons/groups.svg',
+                width: 24,
+              ),
+              label: 'groups'.i18n()),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.account_circle_outlined),
+              label: 'account'.i18n()),
         ],
       ),
     );
