@@ -37,7 +37,6 @@ class _LoginPageState extends State<LoginPage> {
       icon: Icon(obscureText ? Icons.visibility_off : Icons.visibility_sharp),
     );
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
