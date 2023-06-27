@@ -8,32 +8,20 @@ class UserAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: appBarCustom('app_name'.i18n(), subtitle: 'groups'.i18n()),
-      // body: SingleChildScrollView(
-      //   child: Center(
-      //       child: Text('account'.i18n(),
-      //           style: const TextStyle(fontSize: 48, fontFamily: 'Billabong'))),
-      // ),
-
+      appBar: appBarCustom('app_name'.i18n(), subtitle: 'account'.i18n()),
       body: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(18.0),
-                      child:Center(
-                        child: Text('account'.i18n(),
-                        style: const TextStyle(fontSize: 48, fontFamily: 'Billabong')))
-                      
-                    ),
+                 
 
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            CircleAvatar(
+                            const CircleAvatar(
                               radius: 60,
-                              backgroundImage: AssetImage('assets/user_placeholder.svg'),
+                              backgroundImage: AssetImage('lib/assets/images/avatar.png'),
                             ),
                             SizedBox(height: 16.0),
                             Text(
@@ -57,7 +45,7 @@ class UserAccount extends StatelessWidget {
                               children: [
                                 Column(
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Postagens',
                                       style: TextStyle(
                                         fontSize: 16,
@@ -73,7 +61,7 @@ class UserAccount extends StatelessWidget {
                                 ),
                                 Column(
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Seguidores',
                                       style: TextStyle(
                                         fontSize: 16,
@@ -89,7 +77,7 @@ class UserAccount extends StatelessWidget {
                                 ),
                                 Column(
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Seguindo',
                                       style: TextStyle(
                                         fontSize: 16,
@@ -113,22 +101,7 @@ class UserAccount extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Divider(),
-                      // GridView.count(
-                      //   crossAxisCount: 3,
-                      //   shrinkWrap: true,
-                      //   physics: NeverScrollableScrollPhysics(),
-                      //   children: List.generate(9, (index) {
-                      //     return Container(
-                      //       decoration: BoxDecoration(
-                      //         image: DecorationImage(
-                      //           image: AssetImage('assets/post_$index.jpg'),
-                      //           fit: BoxFit.cover,
-                      //         ),
-                      //       ),
-                      //     );
-                      //   }),
-                      // ),
+                      const Divider(),
                     ]
 
                 ),
