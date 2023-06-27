@@ -81,8 +81,8 @@ class _BodyState extends State<Body> {
                         text: "Continuar",
                         onPressed: () {
                           // TODO: proposito de testes
-                          // Navigator.of(context).pushReplacementNamed('/auth/');
-                          Navigator.of(context).pushReplacementNamed('/home/');
+                          Navigator.of(context).pushReplacementNamed('/auth/');
+                          Navigator.of(context).pushReplacementNamed('/login/');
                         },
                       ),
                     ),
