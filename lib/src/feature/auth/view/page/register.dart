@@ -158,19 +158,4 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  @override
-  void initState() {
-    super.initState();
-    startBackgroundColorAnimation();
-  }
-
-  void startBackgroundColorAnimation() {
-    Future.delayed(Duration(seconds: 3), () {
-      setState(() {
-        currentBackgroundColorIndex =
-            (currentBackgroundColorIndex + 1) % backgroundColors.length;
-        startBackgroundColorAnimation();
-      });
-    });
-  }
 }
