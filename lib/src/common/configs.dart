@@ -1,3 +1,3 @@
 class EnvVariables {
-  var HOST_URL = "https://d0c9-186-251-61-230.sa.ngrok.io";
+  var HOST_URL = "https://6006-45-230-192-141.sa.ngrok.io";
 }
