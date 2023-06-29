@@ -22,27 +22,29 @@ class _RegisterPageState extends State<RegisterPage> {
   final _formKey = GlobalKey<FormState>();
   final _viewModel = Modular.get<RegisterViewModel>();
 
-  hideShowIconButton() {
+  Widget hideShowIconButton() {
     return IconButton(
-        onPressed: () {
-          setState(() {
-            obscureText = !obscureText;
-          });
-        },
-        icon: Icon(obscureText ? Icons.visibility_off : Icons.visibility));
+      onPressed: () {
+        setState(() {
+          obscureText = !obscureText;
+        });
+      },
+      icon: Icon(obscureText ? Icons.visibility_off : Icons.visibility),
+    );
   }
 
-  showAlertDialog(BuildContext context, String message) {
+  void showAlertDialog(BuildContext context, String message) {
     Widget confirmButton = ElevatedButton(
       child: const Text("ok"),
       onPressed: () {
         Navigator.pushNamed(context, 'sign-up');
       },
     );
-    AlertDialog alert =
-        AlertDialog(title: Text('warning'.i18n()), content: Text(message), actions: [
-      confirmButton,
-    ]);
+    AlertDialog alert = AlertDialog(
+      title: Text('warning'.i18n()),
+      content: Text(message),
+      actions: [confirmButton],
+    );
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -81,7 +83,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   controller: _emailController,
                   labelText: 'email'.i18n(),
                   hintText: 'example@email.com'.i18n(),
-                  icon: const Icon(Icons.email_outlined, color: Colors.black),
+                  icon: const Icon(Icons.email_outlined, color: Color.fromARGB(255, 0, 0, 0)),
                   validatorFunction: (email) =>
                       _viewModel.emailValidator(email),
                 ),
@@ -105,26 +107,36 @@ class _RegisterPageState extends State<RegisterPage> {
                           confirmPassword, _passwordController.text),
                 ),
                 const SizedBox(height: 12),
-                CustomElevatedButton(
-                  text: 'back_login_page'.i18n(),
-                  onPressed: () async => Navigator.pushNamed(context, '/auth'),
+                TextButton(
+                  onPressed: () async =>
+                      Navigator.pushNamed(context, '/auth'),
+                  child: Text(
+                    'back_login_page'.i18n(),
+                    style: TextStyle(
+                      color: Color.fromARGB(202, 238, 88, 2),
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 36),
                 CustomElevatedButton(
                   text: 'sign_up'.i18n(),
-                  onPressed: () async => {
+                  onPressed: () async {
                     successRegister = await _viewModel.register(
-                        _formKey,
-                        _nameController,
-                        _emailController,
-                        _usernameController,
-                        _passwordController),
-                    if (successRegister)
-                      {showAlertDialog(context, successRegister.toString())}
-                    else
-                      {showAlertDialog(context, successRegister.toString())},
+                      _formKey,
+                      _nameController,
+                      _emailController,
+                      _usernameController,
+                      _passwordController,
+                    );
+                    if (successRegister) {
+                      showAlertDialog(context, successRegister.toString());
+                    } else {
+                      showAlertDialog(context, successRegister.toString());
+                    }
                   },
-                )
+                ),
               ],
             ),
           ),

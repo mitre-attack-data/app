@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:localization/localization.dart';
-import 'package:mitre_app/src/common/custom_elevated_button.dart';
 import 'package:mitre_app/src/common/custom_text_form_field.dart';
 import 'package:mitre_app/src/feature/auth/viewmodel/login_viewmodel.dart';
 
@@ -19,15 +18,15 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
   final _viewModel = Modular.get<LoginViewModel>();
 
-  hiddenButton() {
+  Widget _buildHiddenButton() {
     return IconButton(
-        onPressed: () {
-          setState(() {
-            obscureText = !obscureText;
-          });
-        },
-        icon:
-            Icon(obscureText ? Icons.visibility_off : Icons.visibility_sharp));
+      onPressed: () {
+        setState(() {
+          obscureText = !obscureText;
+        });
+      },
+      icon: Icon(obscureText ? Icons.visibility_off : Icons.visibility_sharp),
+    );
   }
 
   @override
@@ -64,31 +63,60 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: obscureText,
                   labelText: 'password'.i18n(),
                   hintText: 'password'.i18n(),
-                  icon: hiddenButton(),
+                  icon: _buildHiddenButton(),
                   validatorFunction: (password) =>
                       _viewModel.passwordValidator(password),
                 ),
                 const SizedBox(height: 12),
                 const Divider(),
-                CustomElevatedButton(
-                    text: 'login'.i18n(),
-                    onPressed: () async => {
-                          await _viewModel.login(
-                              _formKey, _emailController, _passwordController),
-                          if (_viewModel.isLogged)
-                            {Navigator.pushNamed(context, '/home')}
-                        }),
-                const SizedBox(height: 36),
-                CustomElevatedButton(
-                  text: 'sign_up'.i18n(),
-                  onPressed: () async =>
-                      {Navigator.pushNamed(context, 'sign-up')},
+                ElevatedButton(
+                  onPressed: () async {
+                    await _viewModel.login(
+                      _formKey,
+                      _emailController,
+                      _passwordController,
+                    );
+                    if (_viewModel.isLogged) {
+                      Navigator.pushNamed(context, '/home');
+                    }
+                  },
+                  child: Text('Login'.toUpperCase()),
+                  style: ElevatedButton.styleFrom(
+                    primary: Color.fromARGB(202, 238, 88, 2),
+                    onPrimary: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  ),
                 ),
                 const SizedBox(height: 36),
-                CustomElevatedButton(
-                  text: 'forgot_password'.i18n(),
-                  onPressed: () async =>
-                      {Navigator.pushNamed(context, 'forgot-password')},
+                TextButton(
+                  onPressed: () async {
+                    Navigator.pushNamed(context, 'sign-up');
+                  },
+                  child: Text(
+                    'Cadastrar',
+                    style: TextStyle(
+                      color: Color.fromARGB(202, 238, 88, 2),
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                TextButton(
+                  onPressed: () async {
+                    Navigator.pushNamed(context, 'forgot-password');
+                  },
+                  child: Text(
+                    'Esqueceu a senha?',
+                    style: TextStyle(
+                      color: Color.fromARGB(202, 238, 88, 2),
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 30.0),
                 Center(

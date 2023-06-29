@@ -18,17 +18,18 @@ class _ForgotPasswordState extends State<ForgotPassword> {
   final _formKey = GlobalKey<FormState>();
   final _viewModel = Modular.get<ForgotPasswordViewModel>();
 
-  showAlertDialog(BuildContext context, String message) {
+  void showAlertDialog(BuildContext context, String message) {
     Widget confirmButton = ElevatedButton(
       child: const Text("ok"),
       onPressed: () {
         Navigator.pushNamed(context, 'forgot-password');
       },
     );
-    AlertDialog alert =
-        AlertDialog(title: Text('warning'.i18n()), content: Text(message), actions: [
-      confirmButton,
-    ]);
+    AlertDialog alert = AlertDialog(
+      title: Text('warning'.i18n()),
+      content: Text(message),
+      actions: [confirmButton],
+    );
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -61,26 +62,43 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 const SizedBox(height: 12),
                 CustomElevatedButton(
                   text: 'send'.i18n(),
-                  onPressed: () async => {
+                  onPressed: () async {
                     reqPasswordUpdate = await _viewModel.reqPasswordUpdate(
-                        _formKey, _emailController),
-                    if (reqPasswordUpdate)
-                      {showAlertDialog(context, reqPasswordUpdate.toString())}
-                    else
-                      {showAlertDialog(context, reqPasswordUpdate.toString())},
+                      _formKey,
+                      _emailController,
+                    );
+                    if (reqPasswordUpdate) {
+                      showAlertDialog(context, reqPasswordUpdate.toString());
+                    } else {
+                      showAlertDialog(context, reqPasswordUpdate.toString());
+                    }
                   },
                 ),
                 const SizedBox(height: 12),
-                CustomElevatedButton(
-                    text: 'i_have_confirmation_code'.i18n(),
-                    onPressed: () async =>
-                        showAlertDialog(context, 'Not implemented yet!')
-                    // Navigator.pushNamed(context, '/reset-confirmation'),
+                TextButton(
+                  onPressed: () async =>
+                      showAlertDialog(context, 'Not implemented yet!'),
+                  child: Text(
+                    'i_have_confirmation_code'.i18n(),
+                    style: TextStyle(
+                      color: Color.fromARGB(202, 238, 88, 2),
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
                     ),
+                  ),
+                ),
                 const SizedBox(height: 12),
-                CustomElevatedButton(
-                  text: 'back_login_page'.i18n(),
-                  onPressed: () async => Navigator.pushNamed(context, '/auth'),
+                TextButton(
+                  onPressed: () async =>
+                      Navigator.pushNamed(context, '/auth'),
+                  child: Text(
+                    'back_login_page'.i18n(),
+                    style: TextStyle(
+                      color: Color.fromARGB(202, 238, 88, 2),
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
               ],
             ),
